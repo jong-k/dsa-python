@@ -1,3 +1,5 @@
+from heapq import heappop, heappush
+
 input_data = ("6 11\n"
               "1\n"
               "1 2 2\n"
@@ -13,12 +15,10 @@ input_data = ("6 11\n"
               "5 6 2")
 
 INF = int(1e9)
-
 input_data = input_data.split("\n")
 node_num, edge_num = map(int, input_data[0].split())
 start_node = int(input_data[1])
 graph = [[] for _ in range(node_num + 1)]
-visited = [False] * (node_num + 1)
 distance = [INF] * (node_num + 1)
 
 # 방향 그래프 준비
@@ -39,43 +39,25 @@ for _ in range(edge_num):
 """
 
 
-def get_smallest_node():
-    """
-    미방문 노드중에서 가장 최단 거리가 짧은 노드 번호 반환
-    :return: 노드 번호
-    """
-    min_value = INF
-    node_index = 0
-    for i in range(1, node_num + 1):
-        if distance[i] < min_value and not visited[i]:
-            min_value = distance[i]
-            node_index = i
-    return node_index
-
-
 def dijkstra(start):
-    """
-    다익스트라 알고리즘으로 distance 리스트 완성
-    :param start: 시작 노드
-    """
-    # 시작 노드 초기화
+    pq = []
+    # 시작 노드의 최단 경로는 0
+    heappush(pq, (start, 0))
     distance[start] = 0
-    visited[start] = True
-    for tup in graph[start]:
-        distance[tup[0]] = tup[1]
-    # 시작 노드를 제외한 전체 n - 1개의 노드에 대해 반복
-    for i in range(node_num - 1):
-        # 현재 가장 최단거리 짧은 노드 꺼내서 방문처리
-        current_node = get_smallest_node()
-        visited[current_node] = True
-        # 현재 노드에 연결된 다른 노드 확인
+    while pq:
+        # 가장 최단거리가 짧은 노드 정보 꺼내기
+        current_node, cost = heappop(pq)
+        # 현재 노드가 이미 처리된 적 있다면 무시
+        if distance[current_node] < cost:
+            continue
+        # 인접 노드 확인
         for neighbor in graph[current_node]:
             new_cost = distance[current_node] + neighbor[1]
-            if cost < distance[neighbor[0]]:
+            if new_cost < distance[neighbor[0]]:
                 distance[neighbor[0]] = new_cost
+                heappush(pq, (neighbor[0], new_cost))
 
 
-# 다익스트라 알고리즘 수행
 dijkstra(start_node)
 # 노드 1번에서 각 노드까지의 최단 거리
 print(distance[1:])  # [0, 2, 3, 1, 2, 4]
