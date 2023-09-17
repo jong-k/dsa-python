@@ -26,6 +26,18 @@ for _ in range(edge_num):
     start, end, cost = map(int, input_data[_ + 2].split())
     graph[start].append((end, cost))
 
+"""그래프
+[
+  [], -> 계산 편하게 하기 위한 미사용 
+  [(2, 2), (3, 5), (4, 1)], -> 1번 노드
+  [(3, 3), (4, 2)],
+  [(2, 3), (6, 5)],
+  [(3, 3), (5, 1)],
+  [(3, 1), (6, 2)],
+  [] -> 마지막 노드
+]
+"""
+
 
 def get_smallest_node():
     """
