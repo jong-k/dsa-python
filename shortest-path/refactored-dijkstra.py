@@ -47,7 +47,7 @@ def dijkstra(start):
     while pq:
         # 가장 최단거리가 짧은 노드 정보 꺼내기
         current_node, cost = heappop(pq)
-        # 현재 노드가 이미 처리된 적 있다면 무시
+        # 현재 노드까지의 거리가 INF보다 작으면 이미 방문된 것이므로 스킵
         if distance[current_node] < cost:
             continue
         # 인접 노드 확인
