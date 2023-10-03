@@ -138,3 +138,9 @@ prefix sum
 #### 구현
 
 `prefix-sum.py`
+
+## 4. 순열과 조합
+
+- Python 3 이상에서 기본 내장된 `itertools` 라이브러리를 활용하면 순열과 조합을 쉽게 활용할 수 있다
+- 순열 : `permutation.py`
+- 조합 : `combination.py`
