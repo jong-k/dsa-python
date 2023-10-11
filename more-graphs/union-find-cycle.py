@@ -11,8 +11,6 @@
 vertex_num = 5
 edge_num = 4
 edges = [(1, 2), (1, 3), (2, 4), (2, 5)]
-# 사이클 발생 False
-
 root_list = [x for x in range(vertex_num + 1)]
 
 
