@@ -8,7 +8,8 @@ total_cost = 0  # 최종 비용
 def find_root(root, x):
     if root[x] != x:
         root[x] = find_root(root, root[x])
-    return root[x]
+    # return x # 원래 방법
+    return root[x]  # 경로 압축 : 바로 루트 노드에 접근하는, 더 효율적인 방법
 
 
 def union_root(root, node1, node2):
