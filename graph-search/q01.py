@@ -1,5 +1,6 @@
 """
 p.149 음료수 얼려 먹기
+프로그래머스 네트워크
 """
 from collections import deque
 
