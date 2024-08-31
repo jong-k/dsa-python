@@ -17,4 +17,4 @@
 
 ## 기타
 
-1. 스택 - stack
+1. 배열 - [array](https://github.com/jong-k/dsa-python/tree/main/array)
